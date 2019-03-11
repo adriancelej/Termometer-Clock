@@ -1,0 +1,82 @@
+# Reading C:/intelFPGA/16.1/modelsim_ase/tcl/vsim/pref.tcl
+# do SYS_run_msim_rtl_vhdl.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim - Intel FPGA Edition vmap 10.5b Lib Mapping Utility 2016.10 Oct  5 2016
+# vmap work rtl_work 
+# Copying C:/intelFPGA/16.1/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# 
+# vcom -93 -work work {C:/Users/adria/Desktop/ALTERAMAX10/SYS_v1/segments_display.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 16:26:39 on Jun 25,2018
+# vcom -reportprogress 300 -93 -work work C:/Users/adria/Desktop/ALTERAMAX10/SYS_v1/segments_display.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity segments_display
+# -- Compiling architecture disp_arch of segments_display
+# End time: 16:26:39 on Jun 25,2018, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+vsim rtl_work.segments_display
+# vsim rtl_work.segments_display 
+# Start time: 16:26:53 on Jun 25,2018
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading rtl_work.segments_display(disp_arch)
+add wave -position insertpoint  \
+sim:/segments_display/clk \
+sim:/segments_display/digits \
+sim:/segments_display/async_reset \
+sim:/segments_display/segment \
+sim:/segments_display/state \
+sim:/segments_display/next_state \
+sim:/segments_display/CNT
+force -freeze sim:/segments_display/clk 1 0, 0 {50 ps} -r 100
+force -freeze sim:/segments_display/digits 00110011001100110011001100110011 0
+force -freeze sim:/segments_display/async_reset 0 0
+run
+run
+run
+run
+force -freeze sim:/segments_display/async_reset 1 0
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+# End time: 16:31:21 on Jun 25,2018, Elapsed time: 0:04:28
+# Errors: 0, Warnings: 0

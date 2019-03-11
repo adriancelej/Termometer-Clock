@@ -1,0 +1,19 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity SYS is
+port(
+async_reset : in std_logic;
+sw_L, sw_R : in std_logic;
+clk : in std_logic;
+sw_res : in : std_logic;
+disp_seg : out std_logic_vector(7 downto 0)
+);
+end SYS;
+
+architecture SYS_arch of SYS is
+
+begin
+
+
+end SYS_arch;

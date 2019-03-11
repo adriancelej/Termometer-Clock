@@ -1,0 +1,79 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity clock is
+generic(CLK_speed : integer:=10000)
+port(
+clk : in std_logic;
+async_reset: in std_logic;
+UP_HOUR, UP_MINUTE : in std_logic;
+disp_OUT : out std_logic_vector(31 downto 0)
+);
+end clcok;
+
+architecture clock_arch of clock is
+signal sec_reg, min_reg: unsigned(5 downto 0);
+signal hour_reg: unsigned(4 downto 0);
+signal CNT: unsigned(13 downto 0);
+signal sec: std_logic;
+begin
+
+process(clk,CNT);
+begin
+sec <= '0';
+if(async_reset='0') then
+CNT <= (others =>'0');
+
+elsif(rising_edge(clk)) then -- proces licznika(counter process)
+if(CNT = CLK_speed) then
+CNT <= (others => '0');
+sec<='1';
+else
+CNT <= CNT+1;
+end if;
+end if;
+end process;
+
+process(clk,async_reset,UP_HOUR,UP_MINUTE,sec)--proces zegarka(clock process)
+begin
+
+if(async_reset ='0') then
+sec_reg <= (others =>'0');
+min_reg <= (others => '0');
+hour_reg <= (others => '0');
+elsif(UP_HOUR='0') then
+if(hour_reg="11000") then
+hour_reg <= (others =>'0');
+else
+hour_reg <= hour_reg +1;
+end if;
+
+elsif(UP_MINUTE='0') then
+if(min_reg="111100") then
+min_reg <=(others => '0');
+else
+min_reg <= min_reg +1;
+end if;
+
+elsif(rising_edge(clk)) then
+if(sec='1') then
+if(sec_reg="111100") then
+sec_reg <= (others=>'0');
+if(min_reg="111100") then
+min_reg <= (others =>'0');
+if(hour_reg="11000") then
+hour_reg<=(others=>'0')
+else
+hour_reg<=hour_reg+1;
+end if;
+else
+min_reg <= min_reg+1;
+end if;
+else
+sec_reg <= sec_reg +1;
+end if;
+end if;
+end process;
+
+end clock_arch; 
